@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class CompanyTest < ActiveSupport::TestCase
+  # 
+  # validations
+  #
   test 'name must exist' do
     company = Company.new(name: nil)
     assert_equal false, company.valid?
@@ -14,13 +17,25 @@ class CompanyTest < ActiveSupport::TestCase
     new_company = Company.new(name: 'a new name', registration_number: company.registration_number)
     assert_equal false, new_company.valid?
   end
+
+  #
+  # relationships
+  #
   test 'has many projects' do
     assert_respond_to companies(:one), :projects
   end
+  test 'has many projects dependent destroy' do
+    # projects(:one) belongs to companies(:one)
+    companies(:one).destroy
+    assert_raises ActiveRecord::RecordNotFound do
+      projects(:one)
+    end
+  end
+
   test 'has many users' do
     assert_respond_to companies(:one), :users
   end
-  test 'has many dependent destroy' do
+  test 'has many users dependent destroy' do
     # users(:one) belongs to companies(:one)
     companies(:one).destroy
     assert_raises ActiveRecord::RecordNotFound do 

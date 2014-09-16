@@ -3,7 +3,9 @@
 one:
   name: FirstProject
   budget: 1.5
+  company: one
 
 two:
   name: SecondProject
   budget: 1.5
+  company: two
