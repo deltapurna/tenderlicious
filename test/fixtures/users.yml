@@ -7,7 +7,9 @@
 one:
  email: email@qiscus.com
  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+ company: one
 
 two:
  email: anotheremail@qiscus.com
  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+ company: two

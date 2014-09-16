@@ -17,4 +17,11 @@ class CompanyTest < ActiveSupport::TestCase
   test 'has many users' do
     assert_respond_to companies(:one), :users
   end
+  test 'has many dependent destroy' do
+    # users(:one) belongs to companies(:one)
+    companies(:one).destroy
+    assert_raises ActiveRecord::RecordNotFound do 
+      users(:one) 
+    end
+  end
 end
