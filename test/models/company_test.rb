@@ -14,6 +14,9 @@ class CompanyTest < ActiveSupport::TestCase
     new_company = Company.new(name: 'a new name', registration_number: company.registration_number)
     assert_equal false, new_company.valid?
   end
+  test 'has many projects' do
+    assert_respond_to companies(:one), :projects
+  end
   test 'has many users' do
     assert_respond_to companies(:one), :users
   end

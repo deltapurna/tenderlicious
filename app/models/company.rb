@@ -3,5 +3,7 @@ class Company < ActiveRecord::Base
   validates :registration_number, presence: true, uniqueness: true
 
   has_many :users, dependent: :destroy
+  has_many :projects
+
   accepts_nested_attributes_for :users
 end
